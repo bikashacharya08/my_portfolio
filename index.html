@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bikash Acharya | Portfolio</title>
+    <meta name="description" content="Portfolio of Bikash Acharya, Tech Graduate and Designer.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Matter.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="wrapper">
+        <header class="header physics-element">
+            <div class="logo">
+                <h1 class="physics-text">Bikash Acharya</h1>
+                <p class="subtitle physics-text">Cybersecurity & Design</p>
+            </div>
+            <button id="exploit-btn" class="terminal-btn physics-element" aria-label="Exploit Vulnerability">
+                <span class="prompt">></span> ./exploit.sh
+            </button>
+        </header>
+
+        <main class="main-content">
+            <section id="about" class="section physics-element">
+                <h2 class="physics-text">System Profile</h2>
+                <p class="physics-text">Hello, I'm Bikash. I'm a B.Sc. CSIT graduate passionate about offensive security and graphic design. Currently practicing web, mobile, and network security through hands-on labs (Hack The Box, PortSwigger) while leveraging my design background to create clear documentation and visual content.</p>
+            </section>
+
+            <section id="projects" class="section">
+                <h2 class="section-title physics-text">Security Operations</h2>
+                <div class="project-grid">
+                    <article class="project-card physics-element">
+                        <div class="card-content">
+                            <h3 class="physics-text">Secure File Sharing System</h3>
+                            <p class="physics-text">Implemented AES-based encryption and integrity checks for secure file transfer in a client-server architecture.</p>
+                            <div class="tags physics-text">
+                                <span>Python</span>
+                                <span>Cryptography</span>
+                                <span>Networking</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card physics-element">
+                        <div class="card-content">
+                            <h3 class="physics-text">Network Vulnerability Scanner</h3>
+                            <p class="physics-text">Built a custom port scanner and service enumeration tool for controlled lab practice and automated reporting.</p>
+                            <div class="tags physics-text">
+                                <span>Python</span>
+                                <span>Nmap</span>
+                                <span>Automation</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card physics-element">
+                        <div class="card-content">
+                            <h3 class="physics-text">Offensive Security Labs</h3>
+                            <p class="physics-text">Solving and documenting authentication, access control, and injection challenges across various CTF platforms.</p>
+                            <div class="tags physics-text">
+                                <span>Burp Suite</span>
+                                <span>DVWA</span>
+                                <span>Hack The Box</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer physics-element">
+            <p class="physics-text">© 2026 Bikash Acharya. System operating normally.</p>
+            <div class="social-links physics-text">
+                <a href="#">GitHub</a>
+                <a href="https://linkedin.com/in/bikku" target="_blank">LinkedIn</a>
+                <a href="mailto:bikashacharya08@gmail.com">Email</a>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Physics Overlay Container -->
+    <div id="physics-canvas"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
