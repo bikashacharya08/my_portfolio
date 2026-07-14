@@ -3,163 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bikash Acharya — MSc CSIT · Web Dev · Cybersecurity</title>
-    <meta name="description" content="Portfolio of Bikash Acharya — MSc Computer Science, web developer, ethical hacker, and digital hospitality entrepreneur.">
-    <meta name="theme-color" content="#F8F7F4">
+    <title>Bikash Acharya — MSc CSIT · Secure Architecture · Ethical Hospitality</title>
+    <meta name="description" content="Portfolio of Bikash Acharya — Advanced CS graduate, secure web architect, and ethical tourism entrepreneur.">
+    <meta name="theme-color" content="#FBFBFB">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header class="site-header" role="banner">
-        <div class="container">
+        <div class="container header-inner">
             <a href="/" class="logo" aria-label="Bikash Acharya home">BA</a>
             <nav aria-label="Primary navigation">
-                <ul class="nav-list">
-                    <li><a href="#about">About</a></li>
+                <ul class="nav-list" id="nav-list">
+                    <li><a href="#mission">Mission</a></li>
                     <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle colour theme">
+                    <span class="theme-icon-light" aria-hidden="true">&#9681;</span>
+                    <span class="theme-icon-dark" aria-hidden="true">&#9670;</span>
+                </button>
+                <button id="nav-toggle" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </header>
 
     <main id="main-content">
 
+        <!-- Hero -->
         <section id="hero" class="hero section">
             <div class="container">
-                <p class="hero-label">Hi, I'm</p>
-                <h1>Bikash Acharya</h1>
-                <p class="hero-subtitle">MSc CSIT candidate &middot; Web Developer &middot; <span class="accent">Cybersecurity Researcher</span> &middot; Digital Hospitality Founder</p>
-                <p class="hero-tagline">Building secure, ethical technology for the modern web — and the future of tourism.</p>
+                <p class="hero-label">Bikash Acharya</p>
+                <h1>Advanced CS Graduate<br><span class="accent">Secure Web Architecture</span><br>Ethical Tourism Transformation</h1>
+                <p class="hero-tagline">Bridging postgraduate computer science, defensive security, and digital hospitality to build technology that is both robust and responsible.</p>
                 <div class="hero-actions">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#education" class="btn btn-primary">View Academic Background</a>
                     <a href="#contact" class="btn btn-ghost">Get in Touch</a>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about section">
+        <!-- Mission -->
+        <section id="mission" class="mission section">
             <div class="container">
-                <h2 class="section-label">About</h2>
-                <div class="about-content">
-                    <p>I'm a postgraduate Computer Science student with a deep interest in web development, offensive and defensive security, and the intersection of technology with ethical tourism. I believe the web should be fast, accessible, and secure by default — and that digital hospitality can drive positive change in Nepal's tourism industry.</p>
-                    <p>Currently pursuing my MSc in Computer Science &amp; Information Technology, I spend my time building full-stack web applications, solving CTF challenges, and laying the groundwork for a digital hospitality venture that puts security and sustainability first.</p>
+                <h2 class="section-label">Professional Mission</h2>
+                <div class="mission-block">
+                    <p>My postgraduate research in <strong>Operating Systems</strong> and <strong>Cybersecurity</strong> at Tribhuvan University is directly applied to building web architectures that are secure by design. I believe the hospitality industry — particularly in Nepal — is overdue for a digital transformation that respects both user privacy and cultural authenticity.</p>
+                    <p>This portfolio represents that convergence: <span class="accent">advanced computing theory</span>, <span class="accent">secure development practice</span>, and a commitment to <span class="accent">ethical, community-driven tourism platforms</span>.</p>
                 </div>
             </div>
         </section>
 
+        <!-- Skills -->
         <section id="skills" class="skills section">
             <div class="container">
-                <h2 class="section-label">Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Web Development</h3>
-                        <ul>
-                            <li>HTML5 / CSS3 / JavaScript</li>
-                            <li>React &middot; Next.js</li>
-                            <li>Node.js &middot; Express</li>
-                            <li>REST API Design</li>
-                            <li>Responsive Architecture</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Cybersecurity</h3>
-                        <ul>
-                            <li>Network Security &amp; Scanning</li>
-                            <li>Web Application Pentesting</li>
-                            <li>Cryptography Fundamentals</li>
-                            <li>CTF Challenges (HTB, PWK)</li>
-                            <li>Secure Coding Practices</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Digital Business</h3>
-                        <ul>
-                            <li>Digital Tourism Strategy</li>
-                            <li>Ethical Hospitality Models</li>
-                            <li>Brand &amp; Visual Design</li>
-                            <li>Content Strategy</li>
-                            <li>Project Management</li>
-                        </ul>
-                    </div>
-                </div>
+                <h2 class="section-label">Core Competencies</h2>
+                <div class="skills-grid" id="skills-grid"></div>
             </div>
         </section>
 
-        <section id="projects" class="projects section">
+        <!-- Education Timeline -->
+        <section id="education" class="education section">
             <div class="container">
-                <h2 class="section-label">Projects</h2>
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="project-card-header">
-                            <h3>Secure File Sharing System</h3>
-                            <span class="project-badge">Security</span>
-                        </div>
-                        <p>AES-encrypted client-server file transfer with integrity verification.</p>
-                        <div class="project-tags">
-                            <span>Python</span>
-                            <span>Cryptography</span>
-                            <span>Networking</span>
-                        </div>
-                        <a href="#" class="project-link">View Project &rarr;</a>
-                    </article>
-                    <article class="project-card">
-                        <div class="project-card-header">
-                            <h3>Network Vulnerability Scanner</h3>
-                            <span class="project-badge">Security</span>
-                        </div>
-                        <p>Custom port scanner and service enumeration tool for controlled lab environments.</p>
-                        <div class="project-tags">
-                            <span>Python</span>
-                            <span>Nmap</span>
-                            <span>Automation</span>
-                        </div>
-                        <a href="#" class="project-link">View Project &rarr;</a>
-                    </article>
-                    <article class="project-card">
-                        <div class="project-card-header">
-                            <h3>Digital Hospitality Platform</h3>
-                            <span class="project-badge">Business</span>
-                        </div>
-                        <p>Ethical, community-driven tourism platform for Nepal — secure bookings, local experiences.</p>
-                        <div class="project-tags">
-                            <span>Next.js</span>
-                            <span>Node.js</span>
-                            <span>Tourism</span>
-                        </div>
-                        <a href="#" class="project-link">View Project &rarr;</a>
-                    </article>
-                </div>
+                <h2 class="section-label">Academic Timeline</h2>
+                <div class="timeline" id="timeline"></div>
             </div>
         </section>
 
+        <!-- Contact -->
         <section id="contact" class="contact section">
             <div class="container">
-                <h2 class="section-label">Contact</h2>
-                <p class="contact-intro">Whether you have a project, a security concern, or an idea for ethical tourism — I'd love to hear it.</p>
+                <h2 class="section-label">Secure Contact</h2>
+                <p class="contact-intro">If you have a project, a security hypothesis, or an idea for ethical tourism in Nepal — I'd welcome the conversation.</p>
                 <form id="contact-form" class="contact-form" novalidate>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required autocomplete="name" maxlength="100">
-                        <span class="form-error" role="alert"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required autocomplete="email" maxlength="200">
-                        <span class="form-error" role="alert"></span>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required autocomplete="name" maxlength="100">
+                            <span class="form-error" role="alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required autocomplete="email" maxlength="200">
+                            <span class="form-error" role="alert"></span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" required rows="5" maxlength="2000"></textarea>
+                        <textarea id="message" name="message" required rows="4" maxlength="2000"></textarea>
                         <span class="form-error" role="alert"></span>
                     </div>
                     <button type="submit" class="btn btn-primary">Send Message</button>
@@ -181,6 +122,6 @@
         </div>
     </footer>
 
-    <script src="script.js" defer></script>
+    <script src="app.js" defer></script>
 </body>
 </html>
