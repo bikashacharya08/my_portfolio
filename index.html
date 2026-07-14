@@ -3,94 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bikash Acharya | Portfolio</title>
-    <meta name="description" content="Portfolio of Bikash Acharya, Tech Graduate and Designer.">
-    
-    <!-- Google Fonts: Inter -->
+    <title>Bikash Acharya — MSc CSIT · Web Dev · Cybersecurity</title>
+    <meta name="description" content="Portfolio of Bikash Acharya — MSc Computer Science, web developer, ethical hacker, and digital hospitality entrepreneur.">
+    <meta name="theme-color" content="#F8F7F4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Matter.js from CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <canvas id="matrix-canvas"></canvas>
-    <div class="scanlines"></div>
-    <div id="wrapper">
-        <header class="header physics-element">
-            <div class="logo">
-                <h1 class="physics-text">Bikash Acharya</h1>
-                <p class="subtitle physics-text">Cybersecurity & Design</p>
-            </div>
-            <button id="exploit-btn" class="terminal-btn physics-element" aria-label="Exploit Vulnerability">
-                <span class="prompt">></span> ./exploit.sh
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="site-header" role="banner">
+        <div class="container">
+            <a href="/" class="logo" aria-label="Bikash Acharya home">BA</a>
+            <nav aria-label="Primary navigation">
+                <ul class="nav-list">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
             </button>
-        </header>
+        </div>
+    </header>
 
-        <main class="main-content">
-            <section id="about" class="section physics-element">
-                <h2 class="physics-text">System Profile</h2>
-                <p class="physics-text">Hello, I'm Bikash. I'm a B.Sc. CSIT graduate passionate about offensive security and graphic design. Currently practicing web, mobile, and network security through hands-on labs (Hack The Box, PortSwigger) while leveraging my design background to create clear documentation and visual content.</p>
-            </section>
+    <main id="main-content">
 
-            <section id="projects" class="section">
-                <h2 class="section-title physics-text">Security Operations</h2>
-                <div class="project-grid">
-                    <article class="project-card physics-element">
-                        <div class="card-content">
-                            <h3 class="physics-text">Secure File Sharing System</h3>
-                            <p class="physics-text">Implemented AES-based encryption and integrity checks for secure file transfer in a client-server architecture.</p>
-                            <div class="tags physics-text">
-                                <span>Python</span>
-                                <span>Cryptography</span>
-                                <span>Networking</span>
-                            </div>
+        <section id="hero" class="hero section">
+            <div class="container">
+                <p class="hero-label">Hi, I'm</p>
+                <h1>Bikash Acharya</h1>
+                <p class="hero-subtitle">MSc CSIT candidate &middot; Web Developer &middot; <span class="accent">Cybersecurity Researcher</span> &middot; Digital Hospitality Founder</p>
+                <p class="hero-tagline">Building secure, ethical technology for the modern web — and the future of tourism.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about section">
+            <div class="container">
+                <h2 class="section-label">About</h2>
+                <div class="about-content">
+                    <p>I'm a postgraduate Computer Science student with a deep interest in web development, offensive and defensive security, and the intersection of technology with ethical tourism. I believe the web should be fast, accessible, and secure by default — and that digital hospitality can drive positive change in Nepal's tourism industry.</p>
+                    <p>Currently pursuing my MSc in Computer Science &amp; Information Technology, I spend my time building full-stack web applications, solving CTF challenges, and laying the groundwork for a digital hospitality venture that puts security and sustainability first.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills section">
+            <div class="container">
+                <h2 class="section-label">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Web Development</h3>
+                        <ul>
+                            <li>HTML5 / CSS3 / JavaScript</li>
+                            <li>React &middot; Next.js</li>
+                            <li>Node.js &middot; Express</li>
+                            <li>REST API Design</li>
+                            <li>Responsive Architecture</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Cybersecurity</h3>
+                        <ul>
+                            <li>Network Security &amp; Scanning</li>
+                            <li>Web Application Pentesting</li>
+                            <li>Cryptography Fundamentals</li>
+                            <li>CTF Challenges (HTB, PWK)</li>
+                            <li>Secure Coding Practices</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Digital Business</h3>
+                        <ul>
+                            <li>Digital Tourism Strategy</li>
+                            <li>Ethical Hospitality Models</li>
+                            <li>Brand &amp; Visual Design</li>
+                            <li>Content Strategy</li>
+                            <li>Project Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects section">
+            <div class="container">
+                <h2 class="section-label">Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-card-header">
+                            <h3>Secure File Sharing System</h3>
+                            <span class="project-badge">Security</span>
                         </div>
+                        <p>AES-encrypted client-server file transfer with integrity verification.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Cryptography</span>
+                            <span>Networking</span>
+                        </div>
+                        <a href="#" class="project-link">View Project &rarr;</a>
                     </article>
-
-                    <article class="project-card physics-element">
-                        <div class="card-content">
-                            <h3 class="physics-text">Network Vulnerability Scanner</h3>
-                            <p class="physics-text">Built a custom port scanner and service enumeration tool for controlled lab practice and automated reporting.</p>
-                            <div class="tags physics-text">
-                                <span>Python</span>
-                                <span>Nmap</span>
-                                <span>Automation</span>
-                            </div>
+                    <article class="project-card">
+                        <div class="project-card-header">
+                            <h3>Network Vulnerability Scanner</h3>
+                            <span class="project-badge">Security</span>
                         </div>
+                        <p>Custom port scanner and service enumeration tool for controlled lab environments.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Nmap</span>
+                            <span>Automation</span>
+                        </div>
+                        <a href="#" class="project-link">View Project &rarr;</a>
                     </article>
-
-                    <article class="project-card physics-element">
-                        <div class="card-content">
-                            <h3 class="physics-text">Offensive Security Labs</h3>
-                            <p class="physics-text">Solving and documenting authentication, access control, and injection challenges across various CTF platforms.</p>
-                            <div class="tags physics-text">
-                                <span>Burp Suite</span>
-                                <span>DVWA</span>
-                                <span>Hack The Box</span>
-                            </div>
+                    <article class="project-card">
+                        <div class="project-card-header">
+                            <h3>Digital Hospitality Platform</h3>
+                            <span class="project-badge">Business</span>
                         </div>
+                        <p>Ethical, community-driven tourism platform for Nepal — secure bookings, local experiences.</p>
+                        <div class="project-tags">
+                            <span>Next.js</span>
+                            <span>Node.js</span>
+                            <span>Tourism</span>
+                        </div>
+                        <a href="#" class="project-link">View Project &rarr;</a>
                     </article>
                 </div>
-            </section>
-        </main>
-
-        <footer class="footer physics-element">
-            <p class="physics-text">© 2026 Bikash Acharya. System operating normally.</p>
-            <div class="social-links physics-text">
-                <a href="#">GitHub</a>
-                <a href="https://linkedin.com/in/bikku" target="_blank">LinkedIn</a>
-                <a href="mailto:bikashacharya08@gmail.com">Email</a>
             </div>
-        </footer>
-    </div>
-    
-    <!-- Physics Overlay Container -->
-    <div id="physics-canvas"></div>
+        </section>
 
-    <script src="script.js"></script>
+        <section id="contact" class="contact section">
+            <div class="container">
+                <h2 class="section-label">Contact</h2>
+                <p class="contact-intro">Whether you have a project, a security concern, or an idea for ethical tourism — I'd love to hear it.</p>
+                <form id="contact-form" class="contact-form" novalidate>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required autocomplete="name" maxlength="100">
+                        <span class="form-error" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required autocomplete="email" maxlength="200">
+                        <span class="form-error" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required rows="5" maxlength="2000"></textarea>
+                        <span class="form-error" role="alert"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <p class="form-success" role="status"></p>
+                </form>
+                <div class="contact-links">
+                    <a href="https://github.com/bikku" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/bikku" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="mailto:bikashacharya08@gmail.com">Email</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <p>&copy; 2026 Bikash Acharya. Built with care.</p>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
 </body>
 </html>

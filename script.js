@@ -1,195 +1,151 @@
 document.addEventListener('DOMContentLoaded', () => {
-    initMatrixRain();
-    
-    const exploitBtn = document.getElementById('exploit-btn');
-    let physicsInitialized = false;
 
-    exploitBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (!physicsInitialized) {
-            initChaosPhysics();
-            physicsInitialized = true;
-            exploitBtn.querySelector('.prompt').textContent = '>';
-            exploitBtn.innerHTML = '<span class="prompt">></span> root access granted...';
-            exploitBtn.style.color = 'var(--accent-error)';
-            exploitBtn.style.borderColor = 'var(--accent-error)';
-        }
-    });
+    /* ---------- Header scroll detection ---------- */
+    const header = document.querySelector('.site-header');
+    let lastScroll = 0;
 
-    function initMatrixRain() {
-        const canvas = document.getElementById('matrix-canvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+~`|}{[]:;?><,./-=';
-        const charArray = characters.split('');
-        const fontSize = 16;
-        const columns = Math.ceil(canvas.width / fontSize);
-        
-        const drops = [];
-        for (let x = 0; x < columns; x++) {
-            drops[x] = 1;
+    const onScroll = () => {
+        const y = window.scrollY;
+        if (y > 20) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
         }
-        
-        function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = '#0F0'; // Neon green
-            ctx.font = fontSize + 'px monospace';
-            
-            for (let i = 0; i < drops.length; i++) {
-                const text = charArray[Math.floor(Math.random() * charArray.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
+        lastScroll = y;
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ---------- Mobile nav toggle ---------- */
+    const toggle = document.querySelector('.nav-toggle');
+    const navList = document.querySelector('.nav-list');
+    const navLinks = navList ? navList.querySelectorAll('a') : [];
+
+    if (toggle && navList) {
+        toggle.addEventListener('click', () => {
+            const expanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', !expanded);
+            navList.classList.toggle('open');
+            document.body.classList.toggle('nav-open');
+        });
+
+        const closeNav = () => {
+            toggle.setAttribute('aria-expanded', 'false');
+            navList.classList.remove('open');
+            document.body.classList.remove('nav-open');
+        };
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeNav);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navList.classList.contains('open')) {
+                closeNav();
+                toggle.focus();
             }
-        }
-        
-        setInterval(draw, 33);
-        
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
         });
     }
 
-    function initChaosPhysics() {
-        // Add active class to body and canvas
-        document.body.classList.add('physics-active');
-        const canvas = document.getElementById('physics-canvas');
-        canvas.classList.add('active');
+    /* ---------- Contact form ---------- */
+    const form = document.getElementById('contact-form');
+    if (form) {
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+        const successMsg = document.querySelector('.form-success');
 
-        // Aliases for Matter.js
-        const Engine = Matter.Engine,
-              Render = Matter.Render,
-              Runner = Matter.Runner,
-              Bodies = Matter.Bodies,
-              Composite = Matter.Composite,
-              Mouse = Matter.Mouse,
-              MouseConstraint = Matter.MouseConstraint,
-              Events = Matter.Events;
+        /* Secure input: strip HTML tags to prevent XSS */
+        const sanitize = (str) => {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.textContent;
+        };
 
-        // Create engine
-        const engine = Engine.create();
-        const world = engine.world;
+        const validateEmail = (email) => {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        };
 
-        // Setup renderer (transparent to see DOM behind)
-        const render = Render.create({
-            element: canvas,
-            engine: engine,
-            options: {
-                width: window.innerWidth,
-                height: window.innerHeight,
-                wireframes: false,
-                background: 'transparent'
+        const showError = (input, msg) => {
+            const error = input.parentElement.querySelector('.form-error');
+            input.classList.add('error');
+            if (error) {
+                error.textContent = msg;
+                error.classList.add('visible');
             }
-        });
+        };
 
-        Render.run(render);
-
-        // Create runner
-        const runner = Runner.create();
-        Runner.run(runner, engine);
-
-        // Gather all elements to apply physics to
-        const domElements = document.querySelectorAll('.physics-element, .physics-text');
-        const bodiesMap = [];
-
-        // Add borders to keep elements on screen
-        const wallOptions = { isStatic: true, render: { visible: false } };
-        const ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth * 2, 100, wallOptions);
-        const leftWall = Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight * 2, wallOptions);
-        const rightWall = Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight * 2, wallOptions);
-        const ceiling = Bodies.rectangle(window.innerWidth / 2, -50, window.innerWidth * 2, 100, wallOptions);
-        
-        Composite.add(world, [ground, leftWall, rightWall, ceiling]);
-
-        // Process elements
-        domElements.forEach((el) => {
-            // Get current dimensions and position
-            const rect = el.getBoundingClientRect();
-            
-            // Skip elements that are hidden or 0 size
-            if (rect.width === 0 || rect.height === 0) return;
-
-            // Fix dimensions before removing from flow
-            el.style.width = `${rect.width}px`;
-            el.style.height = `${rect.height}px`;
-
-            // Create physics body
-            const body = Bodies.rectangle(
-                rect.left + rect.width / 2,
-                rect.top + rect.height / 2,
-                rect.width,
-                rect.height,
-                {
-                    restitution: 0.7, // Bounciness
-                    friction: 0.05,
-                    frictionAir: 0.01,
-                    render: { visible: false } // Hide physics bodies, show DOM
-                }
-            );
-
-            // Set DOM element to fixed positioning relative to viewport
-            el.style.position = 'fixed';
-            el.style.margin = '0';
-            el.style.left = '0px';
-            el.style.top = '0px';
-            el.style.zIndex = '1000';
-
-            // Store pair
-            bodiesMap.push({ dom: el, body: body, width: rect.width, height: rect.height });
-
-            // Add body to world
-            Composite.add(world, body);
-        });
-
-        // Add mouse control
-        const mouse = Mouse.create(render.canvas);
-        const mouseConstraint = MouseConstraint.create(engine, {
-            mouse: mouse,
-            constraint: {
-                stiffness: 0.2,
-                render: { visible: false }
+        const clearError = (input) => {
+            const error = input.parentElement.querySelector('.form-error');
+            input.classList.remove('error');
+            if (error) {
+                error.textContent = '';
+                error.classList.remove('visible');
             }
-        });
-        Composite.add(world, mouseConstraint);
+        };
 
-        // Keep the mouse in sync with rendering
-        render.mouse = mouse;
-
-        // Sync DOM elements with physics bodies on every update
-        Events.on(engine, 'afterUpdate', function() {
-            for (let i = 0; i < bodiesMap.length; i++) {
-                const pair = bodiesMap[i];
-                const dom = pair.dom;
-                const body = pair.body;
-
-                // Position DOM element to match physics body
-                const x = body.position.x - pair.width / 2;
-                const y = body.position.y - pair.height / 2;
-                
-                dom.style.transform = `translate(${x}px, ${y}px) rotate(${body.angle}rad)`;
+        const validateField = (input) => {
+            const val = input.value.trim();
+            if (!val) {
+                showError(input, 'This field is required.');
+                return false;
             }
+            if (input === emailInput && !validateEmail(val)) {
+                showError(input, 'Please enter a valid email address.');
+                return false;
+            }
+            if (input === nameInput && val.length < 2) {
+                showError(input, 'Name must be at least 2 characters.');
+                return false;
+            }
+            clearError(input);
+            return true;
+        };
+
+        nameInput.addEventListener('blur', () => validateField(nameInput));
+        emailInput.addEventListener('blur', () => validateField(emailInput));
+        messageInput.addEventListener('blur', () => validateField(messageInput));
+
+        nameInput.addEventListener('input', () => {
+            if (nameInput.classList.contains('error')) validateField(nameInput);
+        });
+        emailInput.addEventListener('input', () => {
+            if (emailInput.classList.contains('error')) validateField(emailInput);
+        });
+        messageInput.addEventListener('input', () => {
+            if (messageInput.classList.contains('error')) validateField(messageInput);
         });
 
-        // Handle window resize (update walls)
-        window.addEventListener('resize', () => {
-            render.canvas.width = window.innerWidth;
-            render.canvas.height = window.innerHeight;
-            
-            Matter.Body.setPosition(ground, { x: window.innerWidth / 2, y: window.innerHeight + 50 });
-            Matter.Body.setVertices(ground, Matter.Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth * 2, 100).vertices);
-            
-            Matter.Body.setPosition(rightWall, { x: window.innerWidth + 50, y: window.innerHeight / 2 });
-            Matter.Body.setVertices(rightWall, Matter.Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight * 2).vertices);
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            clearError(nameInput);
+            clearError(emailInput);
+            clearError(messageInput);
+            if (successMsg) successMsg.classList.remove('visible');
+
+            const isNameValid = validateField(nameInput);
+            const isEmailValid = validateField(emailInput);
+            const isMessageValid = validateField(messageInput);
+
+            if (!isNameValid || !isEmailValid || !isMessageValid) return;
+
+            /* Build safe payload */
+            const payload = {
+                name: sanitize(nameInput.value.trim()),
+                email: sanitize(emailInput.value.trim()),
+                message: sanitize(messageInput.value.trim())
+            };
+
+            console.log('Form payload (replace with your API endpoint):', payload);
+
+            if (successMsg) {
+                successMsg.textContent = 'Message received. I\'ll respond within 48 hours.';
+                successMsg.classList.add('visible');
+            }
+
+            form.reset();
         });
     }
 });
